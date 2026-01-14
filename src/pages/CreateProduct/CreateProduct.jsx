@@ -10,12 +10,11 @@ function CreateProduct({ addProduct }) {
 
     const newProduct = {
       id: Date.now(),
-      title: title,
-      description: description,
-      price: price,
+      title,
+      description,
+      price,
     };
 
-   
     addProduct(newProduct);
 
     setTitle("");
@@ -24,17 +23,24 @@ function CreateProduct({ addProduct }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ maxWidth: 700, margin: "20px auto" }}>
+      <h2>Mahsulot qo‘shish</h2>
+
       <input
+        type="text"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
+        style={{ width: "100%", padding: 8, marginBottom: 10 }}
       />
 
       <input
+        type="text"
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        style={{ width: "100%", padding: 8, marginBottom: 10 }}
       />
 
       <input
@@ -42,6 +48,8 @@ function CreateProduct({ addProduct }) {
         placeholder="Price"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+        required
+        style={{ width: "100%", padding: 8, marginBottom: 10 }}
       />
 
       <button type="submit">Qo‘shish</button>
