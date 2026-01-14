@@ -9,20 +9,15 @@ import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import Time from "./pages/Time/Time";
 
 function App() {
-  // ❗ Markaziy state
   const [products, setProducts] = useState([]);
-
-  // Mahsulot qo‘shish
   const addProduct = (product) => {
     setProducts([...products, product]);
   };
-
-  // Barcha mahsulotlarni o‘chirish
   const clearProducts = () => {
     setProducts([]);
   };
 
-  // Router
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -34,12 +29,10 @@ function App() {
         },
         {
           path: "/products",
-          // ❗ props orqali products va clearProducts uzatiladi
           element: <Products products={products} clearProducts={clearProducts} />,
         },
         {
           path: "/create-products",
-          // ❗ props orqali addProduct uzatiladi
           element: <CreateProduct addProduct={addProduct} />,
         },
         {
