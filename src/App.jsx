@@ -13,32 +13,38 @@ function App() {
   const addProduct = (product) => {
     setProducts([...products, product]);
   };
-  const clearProducts = () => {
-    setProducts([]);
+  const deleteProduct = (id) => {
+    setProducts(products.filter((p) => p.id !== id));
+  };
+  const editProduct = (id, updatedProduct) => {
+    setProducts(
+      products.map((p) => (p.id === id ? { ...p, ...updatedProduct } : p))
+    );
   };
 
-
+  const clearProducts = () => setProducts([]);
   const router = createBrowserRouter([
     {
       path: "/",
       element: <UserLayout />,
       children: [
-        {
-          index: true,
-          element: <Dashboard />,
-        },
+        { index: true, element: <Dashboard /> },
         {
           path: "/products",
-          element: <Products products={products} clearProducts={clearProducts} />,
+          element: (
+            <Products
+              products={products}
+              deleteProduct={deleteProduct}
+              editProduct={editProduct}
+              clearProducts={clearProducts}
+            />
+          ),
         },
         {
           path: "/create-products",
           element: <CreateProduct addProduct={addProduct} />,
         },
-        {
-          path: "/time",
-          element: <Time />,
-        },
+        { path: "/time", element: <Time /> },
       ],
     },
   ]);
